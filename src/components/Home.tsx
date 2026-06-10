@@ -1,26 +1,22 @@
 import { motion } from "motion/react";
 import { ArrowRight, Globe, Shield, Zap, Leaf, Target, TrendingUp, Users, Building2 } from "lucide-react";
+import { useLanguage } from "../LanguageContext";
 
 interface HomeProps {
   setCurrentPage: (page: string) => void;
 }
 
 export default function Home({ setCurrentPage }: HomeProps) {
+  const { t } = useLanguage();
+
   const impactIndicators = [
-    { label: "Years of Experience", value: "23+", icon: <TrendingUp className="h-5 w-5" /> },
-    { label: "Annual Exports Managed", value: "$7M+", icon: <TrendingUp className="h-5 w-5" /> },
-    { label: "Entrepreneurs Advised", value: "1,500+", icon: <Users className="h-5 w-5" /> },
-    { label: "Countries Served", value: "15+", icon: <Globe className="h-5 w-5" /> },
+    { label: t('home.stats.experience'), value: "23+", icon: <TrendingUp className="h-5 w-5" /> },
+    { label: t('home.stats.exports'), value: "$7M+", icon: <TrendingUp className="h-5 w-5" /> },
+    { label: t('home.stats.advised'), value: "1,500+", icon: <Users className="h-5 w-5" /> },
+    { label: t('home.stats.countries'), value: "15+", icon: <Globe className="h-5 w-5" /> },
   ];
 
-  const capabilities = [
-    { title: "International Trade Strategy", desc: "Comprehensive export strategies tailored for global market entry and expansion." },
-    { title: "Export Market Development", desc: "Identifying and capturing high-value opportunities in Europe, East Asia, and Western Asia." },
-    { title: "Commercial Intelligence", desc: "Data-driven market analysis, trend monitoring, and risk assessment for informed decisions." },
-    { title: "International Negotiation", desc: "Expert representation and contract negotiation with multinational corporations." },
-    { title: "Commercial Diplomacy", desc: "Bridging institutional relationships to facilitate bilateral trade agreements." },
-    { title: "Strategic Market Entry", desc: "End-to-end coordination from supply chain to product launch in target markets." },
-  ];
+  const capabilities = t('home.capabilities.items');
 
   const institutionalNetwork = [
     "CADEXCO", "PROCOMER", "Embassy of China in Costa Rica", "ANDROS France", "China Development Bank", "CCPIT"
@@ -43,7 +39,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm"
           >
             <span className="flex h-2 w-2 rounded-full bg-blue-500 animate-pulse" />
-            <span className="text-xs font-medium tracking-widest uppercase text-blue-400">Strategic International Advisory</span>
+            <span className="text-xs font-medium tracking-widest uppercase text-blue-400">{t('home.hero.badge')}</span>
           </motion.div>
 
           <motion.h1
@@ -52,7 +48,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
             transition={{ delay: 0.1 }}
             className="mb-6 text-5xl font-bold tracking-tight text-white md:text-7xl lg:text-8xl"
           >
-            Driving Global Expansion for <span className="font-medium italic">Export Leaders</span>
+            {t('home.hero.title')} <span className="font-medium italic">{t('home.hero.titleItalic')}</span>
           </motion.h1>
 
           <motion.p
@@ -61,21 +57,27 @@ export default function Home({ setCurrentPage }: HomeProps) {
             transition={{ delay: 0.2 }}
             className="mx-auto mb-10 max-w-2xl text-lg text-white/70 md:text-xl"
           >
-            Over two decades of strategic advisory in international trade, connecting Costa Rican enterprises to Europe, Asia, and beyond.
+            {t('home.hero.desc')}
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="flex justify-center"
+            className="flex flex-wrap justify-center gap-4"
           >
             <button 
               onClick={() => setCurrentPage("experience")}
               className="group flex items-center gap-2 rounded-full bg-white px-8 py-4 text-lg font-bold text-[#040720] transition-all hover:bg-blue-400 hover:scale-105"
             >
-              Our Experience
+              {t('home.hero.cta')}
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </button>
+            <button 
+              onClick={() => setCurrentPage("markets")}
+              className="rounded-full border border-white/20 bg-white/5 px-8 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:scale-105"
+            >
+              {t('home.hero.markets')}
             </button>
           </motion.div>
         </div>
@@ -110,26 +112,25 @@ export default function Home({ setCurrentPage }: HomeProps) {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-16 lg:grid-cols-2">
             <div>
-              <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">About the Firm</h2>
-              <h3 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">A Trusted Partner in International Commerce</h3>
+              <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">{t('home.about.badge')}</h2>
+              <h3 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">{t('home.about.title')}</h3>
               <p className="mt-8 text-lg leading-relaxed text-slate-600">
-                Founded in 2002, Piedra Gaitán & Asociados (PGA) is a Costa Rican firm specializing in strategic international trade advisory. 
-                With a solid reputation built on excellence, professionalism, and ethics, PGA has become the trusted ally for leading national and international export companies.
+                {t('home.about.p1')}
               </p>
               <p className="mt-4 text-lg leading-relaxed text-slate-600">
-                Our philosophy rests on service quality, transparency in every operation, and a strong orientation toward sustainable, profitable commercial relationships.
+                {t('home.about.p2')}
               </p>
               <button 
                 onClick={() => setCurrentPage("about")}
                 className="mt-10 flex items-center gap-2 font-bold text-blue-600 hover:underline"
               >
-                Learn More About Us <ArrowRight className="h-4 w-4" />
+                {t('home.about.cta')} <ArrowRight className="h-4 w-4" />
               </button>
             </div>
             <div className="rounded-3xl bg-slate-50 p-10">
-              <h4 className="mb-6 text-xl font-bold">Our Core Values</h4>
+              <h4 className="mb-6 text-xl font-bold">{t('home.about.valuesTitle')}</h4>
               <ul className="space-y-4">
-                {["Excellence & Professionalism", "Ethical Business Conduct", "Environmental Responsibility", "Client-Centered Strategy", "Sustainable Growth"].map((val, i) => (
+                {t('home.about.values').map((val: string, i: number) => (
                   <li key={i} className="flex items-center gap-3 font-medium text-slate-700">
                     <Shield className="h-5 w-5 text-blue-500" />
                     {val}
@@ -145,12 +146,12 @@ export default function Home({ setCurrentPage }: HomeProps) {
       <section className="bg-slate-50 py-24 text-[#040720]">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-16 text-center">
-            <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">What We Do</h2>
-            <h3 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">Strategic Capabilities</h3>
-            <p className="mt-4 text-xl text-slate-600">Comprehensive solutions in commercial architecture and international business engineering.</p>
+            <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">{t('home.capabilities.badge')}</h2>
+            <h3 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">{t('home.capabilities.title')}</h3>
+            <p className="mt-4 text-xl text-slate-600">{t('home.capabilities.desc')}</p>
           </div>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {capabilities.map((cap, i) => (
+            {capabilities.map((cap: any, i: number) => (
               <div key={i} className="rounded-3xl bg-white p-8 shadow-sm transition-all hover:shadow-md">
                 <h4 className="mb-3 text-xl font-bold">{cap.title}</h4>
                 <p className="text-slate-600">{cap.desc}</p>
@@ -162,7 +163,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
               onClick={() => setCurrentPage("services")}
               className="rounded-full bg-[#040720] px-10 py-4 font-bold text-white transition-transform hover:scale-105"
             >
-              View All Services
+              {t('home.capabilities.cta')}
             </button>
           </div>
         </div>
@@ -173,28 +174,28 @@ export default function Home({ setCurrentPage }: HomeProps) {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-16 lg:grid-cols-2">
             <div>
-              <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-blue-400">Global Reach</h2>
-              <h3 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">International Markets Expertise</h3>
-              <p className="mt-6 text-lg text-white/60">Deep knowledge of business culture and trade dynamics across three continents.</p>
+              <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-blue-400">{t('home.reach.badge')}</h2>
+              <h3 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">{t('home.reach.title')}</h3>
+              <p className="mt-6 text-lg text-white/60">{t('home.reach.desc')}</p>
               <div className="mt-10 space-y-8">
                 <div>
-                  <h4 className="text-xl font-bold text-blue-400">Europe</h4>
-                  <p className="mt-2 text-white/70">France · Italy · Portugal · UK · Scandinavia</p>
+                  <h4 className="text-xl font-bold text-blue-400">{t('home.reach.europe')}</h4>
+                  <p className="mt-2 text-white/70">{t('home.reach.europeDesc')}</p>
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-blue-400">East Asia</h4>
-                  <p className="mt-2 text-white/70">China · Japan · South Korea</p>
+                  <h4 className="text-xl font-bold text-blue-400">{t('home.reach.eastAsia')}</h4>
+                  <p className="mt-2 text-white/70">{t('home.reach.eastAsiaDesc')}</p>
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-blue-400">Western Asia</h4>
-                  <p className="mt-2 text-white/70">Dubai · UAE · GCC Markets</p>
+                  <h4 className="text-xl font-bold text-blue-400">{t('home.reach.westAsia')}</h4>
+                  <p className="mt-2 text-white/70">{t('home.reach.westAsiaDesc')}</p>
                 </div>
               </div>
               <button 
                 onClick={() => setCurrentPage("markets")}
                 className="mt-12 rounded-full border border-white/20 bg-white/5 px-8 py-3 font-bold backdrop-blur-sm transition-all hover:bg-white/10"
               >
-                Explore Markets
+                {t('home.reach.cta')}
               </button>
             </div>
             <div className="relative flex min-h-[400px] items-stretch lg:h-full">
@@ -214,9 +215,9 @@ export default function Home({ setCurrentPage }: HomeProps) {
       <section className="bg-white py-24 text-[#040720]">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-16 text-center">
-            <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">Institutional Network</h2>
-            <h3 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">Strategic Partnerships & Collaborations</h3>
-            <p className="mt-4 text-xl text-slate-600">Trusted relationships with leading institutions and organizations.</p>
+            <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">{t('home.network.badge')}</h2>
+            <h3 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">{t('home.network.title')}</h3>
+            <p className="mt-4 text-xl text-slate-600">{t('home.network.desc')}</p>
           </div>
           <div className="flex flex-wrap justify-center gap-8 md:gap-16">
             {institutionalNetwork.map((name, i) => (
@@ -229,15 +230,28 @@ export default function Home({ setCurrentPage }: HomeProps) {
       </section>
 
       {/* Final CTA */}
-      <section className="bg-[#190F1F] py-24 text-white">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="text-3xl font-bold md:text-5xl">Become Our Strategic Ally in Your Internationalization Journey</h2>
-          <p className="mt-6 text-xl text-blue-100">Let's explore how PGA can accelerate your global expansion with proven strategies and deep market expertise.</p>
+      <section className="relative overflow-hidden py-32 text-white">
+        <div className="absolute inset-0 z-0">
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline 
+            className="h-full w-full object-cover"
+          >
+            <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260217_030345_246c0224-10a4-422c-b324-070b7c0eceda.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+          <h2 className="text-3xl font-bold md:text-5xl">{t('home.cta.title')}</h2>
+          <p className="mt-6 text-xl text-blue-100">{t('home.cta.desc')}</p>
           <button 
             onClick={() => setCurrentPage("contact")}
-            className="mt-10 rounded-full bg-white px-10 py-4 font-bold text-[#190F1F] transition-transform hover:scale-105"
+            className="mt-10 rounded-full bg-white px-10 py-4 font-bold text-[#040720] transition-transform hover:scale-105"
           >
-            Contact Us Today
+            {t('home.cta.button')}
           </button>
         </div>
       </section>

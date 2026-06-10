@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
@@ -7,9 +8,13 @@ import Markets from "./components/Markets";
 import Experience from "./components/Experience";
 import Insights from "./components/Insights";
 import Contact from "./components/Contact";
+import { LanguageProvider, useLanguage } from "./LanguageContext";
 
-export default function App() {
+function AppContent() {
   const [currentPage, setCurrentPage] = useState("home");
+  const { language, t } = useLanguage();
+
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : "";
 
   const renderPage = () => {
     switch (currentPage) {
@@ -34,6 +39,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white text-[#040720] selection:bg-blue-500/30">
+      <Helmet>
+        <html lang={language} />
+        <link rel="alternate" hrefLang="en" href={`${baseUrl}?lang=en`} />
+        <link rel="alternate" hrefLang="es" href={`${baseUrl}?lang=es`} />
+        <link rel="alternate" hrefLang="fr" href={`${baseUrl}?lang=fr`} />
+        <link rel="alternate" hrefLang="x-default" href={baseUrl} />
+      </Helmet>
       <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
       
       <main>
@@ -52,11 +64,11 @@ export default function App() {
                 referrerPolicy="no-referrer"
               />
               <p className="mt-6 max-w-sm text-lg">
-                Strategic international trade advisory connecting Costa Rican enterprises to global markets since 2002.
+                {t('footer.desc')}
               </p>
             </div>
             <div>
-              <h4 className="mb-6 font-bold text-white">Quick Links</h4>
+              <h4 className="mb-6 font-bold text-white">{t('footer.quickLinks')}</h4>
               <ul className="space-y-4">
                 {["Home", "About", "Services", "Markets", "Experience", "Insights", "Contact"].map((page) => (
                   <li key={page}>
@@ -67,14 +79,14 @@ export default function App() {
                       }} 
                       className="hover:text-white"
                     >
-                      {page}
+                      {t(`nav.${page.toLowerCase()}`)}
                     </button>
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <h4 className="mb-6 font-bold text-white">Contact</h4>
+              <h4 className="mb-6 font-bold text-white">{t('footer.contact')}</h4>
               <ul className="space-y-4">
                 <li>piedra.gaitan.asociados@gmail.com</li>
                 <li>San José, Costa Rica</li>
@@ -82,10 +94,20 @@ export default function App() {
             </div>
           </div>
           <div className="mt-20 border-t border-white/5 pt-8 text-sm">
-            <p>© {new Date().getFullYear()} Piedra Gaitán & Asociados. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Piedra Gaitán & Asociados. {t('footer.rights')}</p>
           </div>
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <HelmetProvider>
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
+    </HelmetProvider>
   );
 }

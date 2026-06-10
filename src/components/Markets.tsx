@@ -1,26 +1,29 @@
 import { motion } from "motion/react";
+import { useLanguage } from "../LanguageContext";
 
 export default function Markets() {
+  const { t } = useLanguage();
+
   return (
     <div className="pt-32 pb-24">
       <section className="px-6">
         <div className="mx-auto max-w-7xl">
-          <h1 className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">International Markets</h1>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-6xl">Global Expertise, Local Understanding</h2>
+          <h1 className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">{t('markets.badge')}</h1>
+          <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-6xl">{t('markets.title')}</h2>
           <p className="mt-8 max-w-3xl text-xl text-slate-600">
-            Over 23 years of cultivating deep knowledge of business culture, trade dynamics, and commercial opportunities across three continents.
+            {t('markets.desc')}
           </p>
 
           <div className="mt-20 space-y-24">
             {/* Europe */}
             <div className="grid gap-12 lg:grid-cols-2">
               <div>
-                <h3 className="text-3xl font-bold text-blue-600">Europe</h3>
-                <p className="mt-4 text-xl font-medium text-slate-800">France · Italy · Portugal · UK · Scandinavia · Spain · Poland · Germany</p>
+                <h3 className="text-3xl font-bold text-blue-600">{t('markets.europe.title')}</h3>
+                <p className="mt-4 text-xl font-medium text-slate-800">{t('markets.europe.countries')}</p>
                 <div className="mt-8 space-y-6 text-lg text-slate-600">
-                  <p>Exclusive purchasing agent for the ANDROS Group — one of Europe's largest food conglomerates — operating across France, Spain, Poland, Italy, Germany, the UK, and China since 2002.</p>
-                  <p>Designed and executed the PICARD organic frozen pineapple program, reaching 1,000+ retail points across France.</p>
-                  <p>Extensive experience in exporting premium agroindustrial products including IQF frozen pineapple, specialty coffee, frozen fruit juices and purées, and dairy products.</p>
+                  <p>{t('markets.europe.p1')}</p>
+                  <p>{t('markets.europe.p2')}</p>
+                  <p>{t('markets.europe.p3')}</p>
                 </div>
               </div>
               <div className="rounded-3xl bg-slate-100 overflow-hidden flex items-center justify-center h-[400px]">
@@ -36,14 +39,14 @@ export default function Markets() {
             {/* East Asia */}
             <div className="grid gap-12 lg:grid-cols-2 lg:flex-row-reverse">
               <div className="lg:order-2">
-                <h3 className="text-3xl font-bold text-blue-600">East Asia</h3>
-                <p className="mt-4 text-xl font-medium text-slate-800">China · Japan · South Korea</p>
+                <h3 className="text-3xl font-bold text-blue-600">{t('markets.eastAsia.title')}</h3>
+                <p className="mt-4 text-xl font-medium text-slate-800">{t('markets.eastAsia.countries')}</p>
                 <div className="mt-8 space-y-6 text-lg text-slate-600">
-                  <p>Pioneered the CHINA YA program (2002) — a landmark initiative promoting diplomatic and commercial ties between Costa Rica and China, culminating in diplomatic relations in 2007.</p>
-                  <p>Advised 1,500+ Costa Rican and Central American entrepreneurs on conducting business in China over seven years.</p>
-                  <p>Facilitated strategic banking relationships between Costa Rican national banks and Chinese institutions including China Development Bank, Bank of China, ICBC, and Agricultural Bank of China — securing a US$40M agreement for BCR.</p>
-                  <p>Played a key role in Costa Rica's adhesion to China's Belt and Road Initiative (2018).</p>
-                  <p>Strategically managed the RECOPE–CNPC conciliation process, averting a potential US$50M international dispute.</p>
+                  <p>{t('markets.eastAsia.p1')}</p>
+                  <p>{t('markets.eastAsia.p2')}</p>
+                  <p>{t('markets.eastAsia.p3')}</p>
+                  <p>{t('markets.eastAsia.p4')}</p>
+                  <p>{t('markets.eastAsia.p5')}</p>
                 </div>
               </div>
               <div className="lg:order-1 rounded-3xl bg-slate-100 overflow-hidden flex items-center justify-center h-[400px]">
@@ -59,14 +62,14 @@ export default function Markets() {
             {/* Western Asia */}
             <div className="grid gap-12 lg:grid-cols-2">
               <div>
-                <h3 className="text-3xl font-bold text-blue-600">Western Asia</h3>
-                <p className="mt-4 text-xl font-medium text-slate-800">Dubai · UAE · GCC Markets</p>
+                <h3 className="text-3xl font-bold text-blue-600">{t('markets.westAsia.title')}</h3>
+                <p className="mt-4 text-xl font-medium text-slate-800">{t('markets.westAsia.countries')}</p>
                 <div className="mt-8 space-y-6 text-lg text-slate-600">
-                  <p>Developing a strategic vision to enter the UAE market by leveraging Dubai as a central logistics and commercial hub connecting West Asia, Africa, and Southeast Asia.</p>
-                  <p>Participation strategy for major trade fairs including Gulfood.</p>
-                  <p>Exploring connections with free trade zones such as JAFZA.</p>
-                  <p>Building alliances with halal-certified distributors.</p>
-                  <p>Commercial intelligence for accessing high-purchasing-power GCC markets.</p>
+                  <p>{t('markets.westAsia.p1')}</p>
+                  <p>{t('markets.westAsia.p2')}</p>
+                  <p>{t('markets.westAsia.p3')}</p>
+                  <p>{t('markets.westAsia.p4')}</p>
+                  <p>{t('markets.westAsia.p5')}</p>
                 </div>
               </div>
               <div className="rounded-3xl bg-slate-100 overflow-hidden flex items-center justify-center h-[400px]">
