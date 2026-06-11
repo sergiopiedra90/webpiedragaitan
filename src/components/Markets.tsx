@@ -74,7 +74,7 @@ export default function Markets() {
               </div>
               <div className="rounded-3xl bg-slate-100 overflow-hidden flex items-center justify-center h-[400px]">
                 <img 
-                  src="https://i.ibb.co/yFV1TxCw/west-asia.png" 
+                  src="https://i.ibb.co/gZ6p1c85/west-asia.png" 
                   alt="Western Asia" 
                   className="h-full w-full object-cover"
                   referrerPolicy="no-referrer"
